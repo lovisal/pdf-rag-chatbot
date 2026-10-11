@@ -5,6 +5,7 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import faiss
 import re
+import os
 
 # Load the local embedding model
 embedding_model = SentenceTransformer(
@@ -168,4 +169,7 @@ with gr.Blocks(title="AI PDF RAG Chatbot") as demo:
 
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(
+        server_name="0.0.0.0",
+        server_port=int(os.environ.get("PORT", "10000"))
+    )
